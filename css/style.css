@@ -197,3 +197,12 @@ select.select.input10 {
   opacity: 1;
 }
 
+.has-val {
+  height: 55px !important;
+}
+
+.has-val + .label-input100 {
+  top: 10px;
+  font-size: 13px;
+  color: #111111;
+}

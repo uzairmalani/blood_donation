@@ -12,7 +12,19 @@ $(document).ready(function(){
  	$(".wrapper").toggleClass("active");
  });
 
+  $('.input10').each(function(){
+        $(this).on('blur', function(){
+            if($(this).val().trim() != "") {
+                $(this).addClass('has-val');
+            }
+            else {
+                $(this).removeClass('has-val');
+            }
+        })    
+    });
+
  $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
 });
+

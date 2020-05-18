@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+$con = mysqli_connect('localhost','root','');
+
+mysqli_select_db($con, 'bloodbank');
+
+$s = "select * from usertable";
+$result = mysqli_query($con , $s);
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -24,11 +36,11 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle drop" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          UserName
+          <?php echo $_SESSION['username']; ?>
         <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"></a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="#">Edit Profile</a>
 						<a class="dropdown-item" href="#">Setting</a>
-						<div class="dropdown-divider"></div> <a class="dropdown-item" href="#">Sign Out</a>
+						<div class="dropdown-divider"></div> <a class="dropdown-item" href="logout.php">Sign Out</a>
 					</div>
 				</li>
 			</ul>
@@ -141,8 +153,41 @@
 					</div>
 
 
-
 					<table class="table">
+					<thead class="thead-dark">
+   					 <tr>
+    					<th scope="col">#</th>
+    					<th scope="col">Name</th>
+      					<th scope="col">Email</th>
+    					<th scope="col">Contact No</th>
+    					<th scope="col">Blood Group</th>
+				    </tr>
+ 					</thead>
+				    <?php
+				    $n=1;
+				    	while($rows=mysqli_fetch_assoc($result))
+				    	{
+				    		?>
+						<tbody>
+				    	<tr>
+      						<th scope="row"><?php echo $n; ?> </th>
+      						<td><?php echo $rows['username']; ?></td>
+      						<td><?php echo $rows['email']; ?></td>
+      						<td><?php echo $rows['contact']; ?></td>
+      						<td><?php echo $rows['bloodgroup']; ?></td>
+   						</tr>
+						</tbody>	
+   						<?php
+   						$n=$n+1;
+				    	}
+				    	
+				    ?>
+
+					</table>
+
+
+
+					<!-- <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -182,7 +227,7 @@
       <td>Karachi</td>
     </tr>
   </tbody>
-</table>
+</table> -->
 				</div>
 
 
