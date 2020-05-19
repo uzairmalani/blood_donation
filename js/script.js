@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+   
+
  	var adjustSidebar = function(){
  		$(".sidebar").slimScroll({
  			height: document.documentElement.clientHeight - $(".navbar").outerHeight()

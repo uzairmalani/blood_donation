@@ -1,7 +1,7 @@
 <?php
 session_start();
 $con = mysqli_connect('localhost','root','');
-
+$validation = "";
 mysqli_select_db($con, 'bloodbank');
 if(isset($_POST['create'])){
 $name = $_POST['username'];
@@ -10,19 +10,25 @@ $email = $_POST['email'];
 $contact = $_POST['contact'];
 $bloodgroup = $_POST['bloodGroup'];
 
-$s = " select * from usertable where username ='$name'";
+$s = " select * from usertable where username ='$name' || email ='$email'";
 
 $result = mysqli_query($con , $s);
 
 $num = mysqli_num_rows($result);
 
-if ($num == 1) {
-	echo "username Already Taken";
-	# code...
+if ($num > 0) {
+ $row = mysqli_fetch_assoc($result);
+ if ($name==$row['username']) 
+ {
+ 	$validation = "Username Already Taken";
+ }
+ elseif ($email == $row['email']) {
+ 	$validation = "Email Already Taken";
+ }
 }else{
 	$reg = "insert into usertable(username, password, email, contact, bloodgroup) values ('$name' , '$pass' ,'$email' , '$contact' ,'$bloodgroup')";
 	mysqli_query($con, $reg);
-echo "Registeration Successfully";
+$validation =  "Registeration Successfully";
 header('location:index.php');	
 }
 
@@ -75,7 +81,7 @@ header('location:index.php');
 
 					<div class="input100 blood username-input validate-input"  data-validate = "BloodGroup is required">
 						<select class="select input10" name="bloodGroup" required>
-  							<option selected>Select Your Blood Group</option>
+  							<option value="" disabled selected>Select Your Blood Group</option>
   							<option value="O-">O-</option>
   							<option value="O+">O+</option>
   							<option value="A+">A+</option>
@@ -99,6 +105,9 @@ header('location:index.php');
 						<a href="#" class="forget-txt1">
 							Forgot password?
 						</a>
+						<p>
+							<?php echo $validation  ?>
+						</p>
 					</div>
 		</form>
 	</div>
