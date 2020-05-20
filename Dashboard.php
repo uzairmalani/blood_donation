@@ -49,7 +49,7 @@ $BloodGroup = $_POST['BloodGroup'];
 
 $upt_blood="update usertable set bloodgroup = '$BloodGroup' where username = '" . $_SESSION['username'] . "'";
 $result_upt = mysqli_query($con , $upt_blood);
-header("refresh:1;url=Dashboard1.php");
+header("refresh:1;url=dashboard.php");
 }
 
 
@@ -77,7 +77,7 @@ header("refresh:1;url=Dashboard1.php");
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<button class="navbar-toggler sideMenuToggler" type="button">	<span class="navbar-toggler-icon"></span>
-		</button> <a class="navbar-brand" href="#">Navbar</a>
+		</button> <a class="navbar-brand" href="#">Blood Donation</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -85,8 +85,8 @@ header("refresh:1;url=Dashboard1.php");
 				<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle drop" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php echo $_SESSION['username']; ?>
         <img class="img-profile rounded-circle" src="img/user.png"></a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="#">Edit Profile</a>
-						<a class="dropdown-item" href="#">Setting</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown"> <!-- <a class="dropdown-item" href="#">Edit Profile</a>
+						<a class="dropdown-item" href="#">Setting</a> -->
 						<div class="dropdown-divider"></div> <a class="dropdown-item" href="logout.php">Sign Out</a>
 					</div>
 				</li>
@@ -103,7 +103,7 @@ header("refresh:1;url=Dashboard1.php");
 					<li class="nav-item"><a href="#" class="nav-link" data-toggle="modal" data-target="#exampleModal"><i class="material-icons icon">
 						person
 					</i><span class="text">Available for Blood Donation</span></a></li>
-					<li class="nav-item"><a href="#" class="nav-link"><i class="material-icons icon">
+					<!-- <li class="nav-item"><a href="#" class="nav-link"><i class="material-icons icon">
 						insert_chart
 					</i><span class="text">Charts</span></a></li>
 					<li class="nav-item"><a href="#" class="nav-link"><i class="material-icons icon">
@@ -111,7 +111,7 @@ header("refresh:1;url=Dashboard1.php");
 					</i><span class="text">Settings</span></a></li>
 					<li class="nav-item"><a href="#" class="nav-link"><i class="material-icons icon">
 						computer
-					</i><span class="text">Demo</span></a></li>
+					</i><span class="text">Demo</span></a></li> -->
 
 					<li class="nav-item sideMenuToggler"><a href="#" class="nav-link"><i class="material-icons icon">
 						view_list
@@ -131,7 +131,7 @@ header("refresh:1;url=Dashboard1.php");
       </div>
       <div class="modal-body">
       		
-        <form class="Login-Form" accept="Dashboard1.php" method="post">
+        <form class="Login-Form" accept="dashboard.php" method="post">
 		<h2 class="head">Blood Donation</h2>
 							
 			
@@ -172,7 +172,7 @@ header("refresh:1;url=Dashboard1.php");
 			<main>
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-4 my-3">
+						<div class="col-md-5 my-3">
 							<div class="bg-mattblack p-3">
 								<h4 class="mb-2 head-text">
 									
@@ -190,7 +190,7 @@ header("refresh:1;url=Dashboard1.php");
 							</div>
 							<h3>
 								Your Blood Group is <?php echo $bloodgroup ?>
-								<form  method="post"  action="Dashboard1.php" >
+								<form  method="post"  action="dashboard.php" >
 									<span>Change Blood Group</span>
 								<select  name="BloodGroup" required>
 							<option value="" disabled selected hidden=""><?php echo $bloodgroup  ?></option>
